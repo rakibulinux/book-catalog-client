@@ -1,14 +1,14 @@
-'use client';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { useForm } from 'react-hook-form';
-import { FcGoogle } from 'react-icons/fc';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { loginUser } from '@/redux/features/user/userSlice';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+"use client";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useForm } from "react-hook-form";
+import { FcGoogle } from "react-icons/fc";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { loginUser } from "@/redux/features/user/userSlice";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -33,12 +33,12 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 
   useEffect(() => {
     if (user.email && !isLoading) {
-      navigate('/');
+      navigate("/");
     }
   }, [user.email, isLoading, navigate]);
 
   return (
-    <div className={cn('grid gap-6', className)} {...props}>
+    <div className={cn("grid gap-6", className)} {...props}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-2">
           <div className="grid gap-1">
@@ -52,7 +52,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              {...register('email', { required: 'Email is required' })}
+              {...register("email", { required: "Email is required" })}
             />
             {errors.email && <p>{errors.email.message}</p>}
             <Input
@@ -61,7 +61,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
               type="password"
               autoCapitalize="none"
               autoComplete="password"
-              {...register('password', { required: 'Password is required' })}
+              {...register("password", { required: "Password is required" })}
             />
             {errors.password && <p>{errors.password.message}</p>}
           </div>
