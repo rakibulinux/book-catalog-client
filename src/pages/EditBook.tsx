@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useCreateBookMutation } from "@/redux/features/books/bookApi";
+import { useUpdateBookMutation } from "@/redux/features/books/bookApi";
 
 import { useForm } from "react-hook-form";
 
@@ -14,7 +14,7 @@ interface IBook {
 }
 
 const EditBook = () => {
-  const [createBook] = useCreateBookMutation();
+  const [updateBook] = useUpdateBookMutation();
 
   const {
     register,
@@ -23,7 +23,7 @@ const EditBook = () => {
   } = useForm<IBook>();
   const onSubmit = (data: IBook) => {
     console.log(data);
-    createBook(data);
+    updateBook(data);
   };
 
   return (
@@ -36,22 +36,20 @@ const EditBook = () => {
               <div>
                 <Label htmlFor="title">Title</Label>
                 <Input
-                  {...register("title", { required: "Title is required" })}
+                  {...register("title")}
                   type="text"
                   id="title"
                   className="mt-2"
                 />
-                {errors.title && <p>{errors.title.message}</p>}
               </div>
               <div>
                 <Label htmlFor="image">Image</Label>
                 <Input
-                  {...register("image", { required: "Image is required" })}
+                  {...register("image")}
                   type="text"
                   id="image"
                   className="mt-2"
                 />
-                {errors.image && <p>{errors.image.message}</p>}
               </div>
               <div>
                 <Label htmlFor="publicationDate">Publication Date</Label>
@@ -62,31 +60,26 @@ const EditBook = () => {
                     required: "PublicationDate is required",
                   })}
                 />
-                {errors.publicationDate && (
-                  <p>{errors.publicationDate.message}</p>
-                )}
               </div>
             </div>
             <div className="w-full space-y-5">
               <div>
                 <Label htmlFor="author">Author</Label>
                 <Input
-                  {...register("author", { required: "Author is required" })}
+                  {...register("author")}
                   type="text"
                   id="author"
                   className="mt-2"
                 />
-                {errors.author && <p>{errors.author.message}</p>}
               </div>
               <div>
                 <Label htmlFor="genre">Genre</Label>
                 <Input
-                  {...register("genre", { required: "Genre is required" })}
+                  {...register("genre")}
                   type="text"
                   id="genre"
                   className="mt-2"
                 />
-                {errors.genre && <p>{errors.genre.message}</p>}
               </div>
 
               <Button className="w-full">Add Book</Button>
