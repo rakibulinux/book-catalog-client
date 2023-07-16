@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import BookReview from "@/components/BookReview";
+import { Button } from "@/components/ui/button";
 import { useSingleBookQuery } from "@/redux/features/books/bookApi";
 
 import { Link, useParams } from "react-router-dom";
@@ -14,7 +15,9 @@ const BookDetails = () => {
   return (
     <>
       <div className="flex flex-col gap-4 md:flex-row max-w-7xl mx-auto items-center md:items-start justify-center">
-        <Link to={`/edit-book/${book?._id}`}>Edit</Link>
+        <Link to={`/edit-book/${book?._id}`}>
+          <Button>Edit</Button>
+        </Link>
         <div className="">
           <img className="h-96" src={book?.image} alt="" />
         </div>

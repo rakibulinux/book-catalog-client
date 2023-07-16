@@ -82,7 +82,7 @@ const EditBook = () => {
                 />
               </div>
 
-              <Button className="w-full">Add Book</Button>
+              <Button className="w-full">Edit Book</Button>
             </div>
           </form>
         </div>
