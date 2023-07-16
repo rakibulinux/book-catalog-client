@@ -2,6 +2,11 @@ import { Button } from "@/components/ui/button";
 import DatePickerWithPreset from "@/components/ui/datePickerWithPreset";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  useCreateBookMutation,
+  usePostbookMutation,
+} from "@/redux/features/books/bookApi";
+import { postBooks } from "@/redux/features/books/bookSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { useForm } from "react-hook-form";
 
@@ -15,6 +20,8 @@ interface IBook {
 
 const AddBook = () => {
   const dispatch = useAppDispatch();
+  const [createBook, { isLoading, isError, error }] = useCreateBookMutation();
+  console.log(error);
   const {
     register,
     handleSubmit,
@@ -22,7 +29,7 @@ const AddBook = () => {
   } = useForm<IBook>();
   const onSubmit = (data: IBook) => {
     console.log(data);
-    // dispatch(createBook({ title: data.title, image: data.image, author: data.author, genre: data.genre, publicationDate: data.publicationDate }));
+    createBook(data);
   };
 
   return (

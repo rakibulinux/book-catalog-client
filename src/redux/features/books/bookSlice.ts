@@ -1,28 +1,32 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-interface IProduct {
-  status: boolean;
-  priceRange: number;
+interface IBook {
+  title: string;
+  image: string;
+  author: string;
+  genre: string;
+  publicationDate: string;
 }
 
-const initialState: IProduct = {
-  status: false,
-  priceRange: 150,
+const initialState: IBook = {
+  title: "",
+  image: "",
+  author: "",
+  genre: "",
+  publicationDate: "",
 };
 
 const bookSlice = createSlice({
-  name: 'book',
+  name: "book",
   initialState,
   reducers: {
-    toggleState: (state) => {
-      state.status = !state.status;
-    },
-    setPriceRange: (state, action: PayloadAction<number>) => {
-      state.priceRange = action.payload;
+    postBooks: (state, action: PayloadAction<IBook>) => {
+      console.log(action.payload);
+      state = action.payload;
     },
   },
 });
 
-export const { toggleState, setPriceRange } = bookSlice.actions;
+export const { postBooks } = bookSlice.actions;
 
 export default bookSlice.reducer;

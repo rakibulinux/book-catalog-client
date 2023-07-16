@@ -1,6 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { api } from "@/redux/api/apiSlice";
-
+interface IBook {
+  title: string;
+  image: string;
+  author: string;
+  genre: string;
+  publicationDate: string;
+}
 const productApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getBooks: builder.query({
@@ -20,6 +25,21 @@ const productApi = api.injectEndpoints({
       }),
       invalidatesTags: ["reviews"],
     }),
+    postbook: builder.mutation({
+      query: (data) => ({
+        url: `/book`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["books"],
+    }),
+    createBook: builder.mutation<IBook, Partial<IBook>>({
+      query: (data) => ({
+        url: "/book",
+        method: "POST",
+        body: data,
+      }),
+    }),
     getReview: builder.query({
       query: (id) => ({
         url: `/review/${id}`,
@@ -35,4 +55,6 @@ export const {
   usePostReviewMutation,
   useSingleBookQuery,
   useGetLimitBooksQuery,
+  usePostbookMutation,
+  useCreateBookMutation,
 } = productApi;
