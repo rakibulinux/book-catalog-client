@@ -5,10 +5,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 import { FiSend } from "react-icons/fi";
-import {
-  useGetReviewQuery,
-  usePostReviewMutation,
-} from "@/redux/features/books/bookApi";
 
 interface IProps {
   reviews: string[];
@@ -30,10 +26,9 @@ const BookReview = ({ reviews }: IProps) => {
   // console.log(isSuccess);
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const options = {
-      id: id,
-      data: { comment: inputValue },
-    };
+    // const options = {
+    //   data: { comment: inputValue },
+    // };
 
     // postComment(options);
 

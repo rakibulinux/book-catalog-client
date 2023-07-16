@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 interface IBook {
   title: string;
@@ -19,14 +19,9 @@ const initialState: IBook = {
 const bookSlice = createSlice({
   name: "book",
   initialState,
-  reducers: {
-    postBooks: (state, action: PayloadAction<IBook>) => {
-      console.log(action.payload);
-      state = action.payload;
-    },
-  },
+  reducers: {},
 });
 
-export const { postBooks } = bookSlice.actions;
+export const {} = bookSlice.actions;
 
 export default bookSlice.reducer;
