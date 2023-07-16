@@ -72,7 +72,7 @@ export default function Navbar() {
                             Login
                           </DropdownMenuItem>
                         </Link>
-                        <Link to="/singup">
+                        <Link to="/signup">
                           <DropdownMenuItem className="cursor-pointer">
                             SingUp
                           </DropdownMenuItem>

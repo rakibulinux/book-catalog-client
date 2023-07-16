@@ -1,8 +1,8 @@
-import { Button } from '@/components/ui/button';
-import banner from '@/assets/images/banner.png';
-import { Link } from 'react-router-dom';
-import Footer from '@/layouts/Footer';
-import Books from './Books';
+import { Button } from "@/components/ui/button";
+import banner from "@/assets/images/banner.png";
+import { Link } from "react-router-dom";
+import Footer from "@/layouts/Footer";
+import HomeBook from "./HomeBook";
 
 export default function Home() {
   return (
@@ -15,14 +15,13 @@ export default function Home() {
           <p className="text-secondary font-semibold text-xl">
             Enjoy Our Book Catalog With Latest Books
           </p>
-
         </div>
         <div className="relative -right-14">
-          <img className='h-96' src={banner} alt="" />
+          <img className="h-96" src={banner} alt="" />
         </div>
       </div>
       <div className="mb-96">
-        <Books/>
+        <HomeBook />
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-5xl font-black text-primary uppercase mt-10">
             Our All Book List Is Here
