@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { SignupForm } from "../components/SignUpForm";
 import { Link } from "react-router-dom";
 import Navbar from "@/layouts/Navbar";
+import SignUpForm from "@/components/SignUpForm";
 
 const Signup = () => {
   return (
@@ -28,7 +28,7 @@ const Signup = () => {
             >
               Login
             </Link>
-            <SignupForm />
+            <SignUpForm />
           </div>
         </div>
       </div>

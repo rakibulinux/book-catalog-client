@@ -17,7 +17,7 @@ interface LoginFormInputs {
   password: string;
 }
 
-export function LoginForm({ className, ...props }: UserAuthFormProps) {
+const LoginForm = ({ className, ...props }: UserAuthFormProps) => {
   const { user, isLoading } = useAppSelector((state) => state.user);
   const navigate = useNavigate();
   const {
@@ -88,4 +88,6 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
       </Button>
     </div>
   );
-}
+};
+
+export default LoginForm;

@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { LoginForm } from "@/components/LoginForm";
 import Navbar from "@/layouts/Navbar";
+import LoginForm from "@/components/LoginForm";
 
 const Login = () => {
   return (
