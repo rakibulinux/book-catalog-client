@@ -1,13 +1,8 @@
 import { Button } from "@/components/ui/button";
-import DatePickerWithPreset from "@/components/ui/datePickerWithPreset";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  useCreateBookMutation,
-  usePostbookMutation,
-} from "@/redux/features/books/bookApi";
-import { postBooks } from "@/redux/features/books/bookSlice";
-import { useAppDispatch } from "@/redux/hooks";
+import { useCreateBookMutation } from "@/redux/features/books/bookApi";
+
 import { useForm } from "react-hook-form";
 
 interface IBook {
@@ -19,9 +14,8 @@ interface IBook {
 }
 
 const AddBook = () => {
-  const dispatch = useAppDispatch();
-  const [createBook, { isLoading, isError, error }] = useCreateBookMutation();
-  console.log(error);
+  const [createBook] = useCreateBookMutation();
+
   const {
     register,
     handleSubmit,
@@ -47,6 +41,7 @@ const AddBook = () => {
                   id="title"
                   className="mt-2"
                 />
+                {errors.title && <p>{errors.title.message}</p>}
               </div>
               <div>
                 <Label htmlFor="image">Image</Label>
@@ -56,6 +51,7 @@ const AddBook = () => {
                   id="image"
                   className="mt-2"
                 />
+                {errors.image && <p>{errors.image.message}</p>}
               </div>
               <div>
                 <Label htmlFor="publicationDate">Publication Date</Label>
@@ -66,6 +62,9 @@ const AddBook = () => {
                     required: "PublicationDate is required",
                   })}
                 />
+                {errors.publicationDate && (
+                  <p>{errors.publicationDate.message}</p>
+                )}
               </div>
             </div>
             <div className="w-full space-y-5">
@@ -77,6 +76,7 @@ const AddBook = () => {
                   id="author"
                   className="mt-2"
                 />
+                {errors.author && <p>{errors.author.message}</p>}
               </div>
               <div>
                 <Label htmlFor="genre">Genre</Label>
@@ -86,6 +86,7 @@ const AddBook = () => {
                   id="genre"
                   className="mt-2"
                 />
+                {errors.genre && <p>{errors.genre.message}</p>}
               </div>
 
               <Button className="w-full">Add Book</Button>
