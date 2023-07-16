@@ -11,16 +11,17 @@ import {
 } from "@/redux/features/books/bookApi";
 
 interface IProps {
-  id: string;
+  reviews: string[];
 }
 
-const BookReview = ({ id }: IProps) => {
+const BookReview = ({ reviews }: IProps) => {
   const [inputValue, setInputValue] = useState<string>("");
-  const { data } = useGetReviewQuery(id, {
-    refetchOnMountOrArgChange: true,
-    pollingInterval: 30000,
-  });
-  const [postComment] = usePostReviewMutation();
+  console.log(reviews);
+  // const { data } = useGetReviewQuery(id, {
+  //   refetchOnMountOrArgChange: true,
+  //   pollingInterval: 30000,
+  // });
+  // const [postComment] = usePostReviewMutation();
 
   // const [postComment, { isLoading, isError, isSuccess }] =
   //   usePostCommentMutation();
@@ -59,13 +60,13 @@ const BookReview = ({ id }: IProps) => {
         </Button>
       </form>
       <div className="mt-10">
-        {data?.reviews?.map((comment: string, index: string) => (
+        {reviews?.map((review: string, index: string) => (
           <div key={index} className="flex gap-3 items-center mb-5">
             <Avatar>
               <AvatarImage src="https://github.com/rakibulinux.png" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarFallback>Rakib</AvatarFallback>
             </Avatar>
-            <p>{comment}</p>
+            <p>{review}</p>
           </div>
         ))}
       </div>

@@ -1,18 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Button } from '@/components/ui/button';
+import BookReview from '@/components/BookReview';
 import { useSingleBookQuery, } from '@/redux/features/books/bookApi';
-import { useAppDispatch } from '@/redux/hooks';
 
 import { useParams } from 'react-router-dom';
-import { IBook } from '@/types/globalTypes';
-
-
 const BookDetails = () => {
   const { id } = useParams();
-  const dispatch = useAppDispatch();
-  const { data } = useSingleBookQuery(id);
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-const book : IBook = data?.data
+  const { data: bookData} = useSingleBookQuery(id);
+
+const book = bookData?.data
+
 
   return (
     <>
@@ -23,16 +21,9 @@ const book : IBook = data?.data
         <div className="w-[50%] space-y-3">
           <h1 className="text-3xl font-semibold">{book?.title}</h1>
           <p className="text-xl">Author: {book?.author}</p>
-          {/* <ul className="space-y-1 text-lg">
-            {book?.features?.map((feature: string) => (
-              <li key={feature}>{feature}</li>
-            ))}
-          </ul> */}
-          <Button>
-            Add to cart
-          </Button>
         </div>
       </div>
+        <BookReview reviews={book?.reviews}/>
     </>
   );
 }

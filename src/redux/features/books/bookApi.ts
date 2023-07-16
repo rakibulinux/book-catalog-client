@@ -19,7 +19,7 @@ const productApi = api.injectEndpoints({
     }),
     getReview: builder.query({
       query: (id) => ({
-        url: `/comment/${id}`,
+        url: `/review/${id}`,
       }),
       providesTags: ['comments'],
     }),
