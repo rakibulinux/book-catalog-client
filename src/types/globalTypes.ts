@@ -1,9 +1,14 @@
 export interface IBook {
-  _id: number;
+  _id: string;
   title: string;
   image: string;
   author: string;
   genre: string;
-  publicationDate: Date;
+  publicationDate: string;
   reviews?: string[];
+}
+
+export interface IItem {
+  status: boolean;
+  price: number;
 }

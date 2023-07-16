@@ -1,8 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 import { FiSend } from "react-icons/fi";
+import {
+  useGetReviewQuery,
+  usePostReviewMutation,
+} from "@/redux/features/books/bookApi";
 
 interface IProps {
   id: string;
@@ -10,6 +16,11 @@ interface IProps {
 
 const BookReview = ({ id }: IProps) => {
   const [inputValue, setInputValue] = useState<string>("");
+  const { data } = useGetReviewQuery(id, {
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 30000,
+  });
+  const [postComment] = usePostReviewMutation();
 
   // const [postComment, { isLoading, isError, isSuccess }] =
   //   usePostCommentMutation();
@@ -22,6 +33,8 @@ const BookReview = ({ id }: IProps) => {
       id: id,
       data: { comment: inputValue },
     };
+
+    // postComment(options);
 
     setInputValue("");
   };
@@ -46,10 +59,10 @@ const BookReview = ({ id }: IProps) => {
         </Button>
       </form>
       <div className="mt-10">
-        {data?.comments?.map((comment: string, index: string) => (
+        {data?.reviews?.map((comment: string, index: string) => (
           <div key={index} className="flex gap-3 items-center mb-5">
             <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarImage src="https://github.com/rakibulinux.png" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <p>{comment}</p>

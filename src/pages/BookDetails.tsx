@@ -1,12 +1,18 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { Button } from '@/components/ui/button';
+import { useSingleBookQuery, } from '@/redux/features/books/bookApi';
+import { useAppDispatch } from '@/redux/hooks';
 
-import BookReview from "@/components/BookReview";
-import { Button } from "@/components/ui/button";
+import { useParams } from 'react-router-dom';
+import { IBook } from '@/types/globalTypes';
 
-import { useParams } from "react-router-dom";
 
 const BookDetails = () => {
   const { id } = useParams();
+  const dispatch = useAppDispatch();
+  const { data } = useSingleBookQuery(id);
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+const book : IBook = data?.data
 
   return (
     <>
@@ -15,18 +21,20 @@ const BookDetails = () => {
           <img src={book?.image} alt="" />
         </div>
         <div className="w-[50%] space-y-3">
-          <h1 className="text-3xl font-semibold">{book?.name}</h1>
-          <p className="text-xl">Rating: {book?.rating}</p>
-          <ul className="space-y-1 text-lg">
+          <h1 className="text-3xl font-semibold">{book?.title}</h1>
+          <p className="text-xl">Author: {book?.author}</p>
+          {/* <ul className="space-y-1 text-lg">
             {book?.features?.map((feature: string) => (
               <li key={feature}>{feature}</li>
             ))}
-          </ul>
+          </ul> */}
+          <Button>
+            Add to cart
+          </Button>
         </div>
       </div>
-      <BookReview id={id!} />
     </>
   );
-};
+}
 
 export default BookDetails;

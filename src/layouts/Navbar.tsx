@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
 import { Button } from "../components/ui/button";
@@ -10,12 +11,19 @@ import {
   DropdownMenuContent,
 } from "../components/ui/dropdown-menu";
 import { HiOutlineSearch } from "react-icons/hi";
-
 import logo from "../assets/images/book-catalog.png";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { signOut } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { setUser } from "@/redux/features/user/userSlice";
 
 export default function Navbar() {
-  const handleSingOut = () => {
-    console.log("SignOut");
+  const { user } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+  const handleSingOut = async () => {
+    await signOut(auth).then(() => {
+      dispatch(setUser(null));
+    });
   };
   return (
     <nav className="w-full h-16 fixed top backdrop-blur-lg z-10">
@@ -35,12 +43,7 @@ export default function Navbar() {
               </li>
               <li>
                 <Button variant="link" asChild>
-                  <Link to="/products">Products</Link>
-                </Button>
-              </li>
-              <li>
-                <Button variant="link" asChild>
-                  <Link to="/checkout">Checkout</Link>
+                  <Link to="/books">All Books</Link>
                 </Button>
               </li>
               <li>
@@ -52,7 +55,7 @@ export default function Navbar() {
                 <DropdownMenu>
                   <DropdownMenuTrigger className="outline-none">
                     <Avatar>
-                      <AvatarImage src="https://github.com/shadcn.png" />
+                      <AvatarImage src="https://github.com/rakibulinux.png" />
                       <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
                   </DropdownMenuTrigger>
@@ -62,15 +65,27 @@ export default function Navbar() {
                     <DropdownMenuItem className="cursor-pointer">
                       Profile
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer">
-                      Billing
-                    </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer">
-                      Team
-                    </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer">
-                      Subscription
-                    </DropdownMenuItem>
+                    {!user?.email && (
+                      <>
+                        <Link to="/login">
+                          <DropdownMenuItem className="cursor-pointer">
+                            Login
+                          </DropdownMenuItem>
+                        </Link>
+                        <Link to="/singup">
+                          <DropdownMenuItem className="cursor-pointer">
+                            SingUp
+                          </DropdownMenuItem>
+                        </Link>
+                      </>
+                    )}
+                    {user?.email && (
+                      <button onClick={() => handleSingOut()}>
+                        <DropdownMenuItem className="cursor-pointer">
+                          SingOut
+                        </DropdownMenuItem>
+                      </button>
+                    )}
                   </DropdownMenuContent>
                 </DropdownMenu>
               </li>
