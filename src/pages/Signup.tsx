@@ -2,7 +2,6 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { SignupForm } from "../components/SignUpForm";
 import { Link } from "react-router-dom";
-import logo from "../assets/images/book-catalog.png";
 import Navbar from "@/layouts/Navbar";
 
 const Signup = () => {
