@@ -12,6 +12,7 @@ const BookCard = ({ book }: IProps) => {
     toast({
       description: "book Added",
     });
+    console.log(book);
   };
   return (
     <div>
@@ -21,7 +22,7 @@ const BookCard = ({ book }: IProps) => {
           <h1 className="text-xl font-semibold">{book?.title}</h1>
         </Link>
         <p>Author: {book?.author}</p>
-        <p className="text-sm">Gener: {book?.gener ? "Sci" : "Out of stock"}</p>
+        <p className="text-sm">Gener: {book?.genre ? "Sci" : "Out of stock"}</p>
         <p className="text-sm">
           Publication Date: {book?.publicationDate.toLocaleDateString()}
         </p>
