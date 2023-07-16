@@ -48,7 +48,7 @@ const BookReview = ({ reviews }: IProps) => {
     <div className="max-w-7xl mx-auto mt-5">
       <form className="flex gap-5 items-center" onSubmit={handleSubmit}>
         <Textarea
-          className="min-h-[30px]"
+          className="min-h-[30px] border border-gray-300"
           onChange={handleChange}
           value={inputValue}
         />
@@ -60,7 +60,7 @@ const BookReview = ({ reviews }: IProps) => {
         </Button>
       </form>
       <div className="mt-10">
-        {reviews?.map((review: string, index: string) => (
+        {reviews?.map((review, index) => (
           <div key={index} className="flex gap-3 items-center mb-5">
             <Avatar>
               <AvatarImage src="https://github.com/rakibulinux.png" />

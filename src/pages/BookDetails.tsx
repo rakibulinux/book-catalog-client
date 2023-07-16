@@ -14,13 +14,15 @@ const book = bookData?.data
 
   return (
     <>
-      <div className="flex max-w-7xl mx-auto items-center border-b border-gray-300">
-        <div className="w-[50%]">
-          <img src={book?.image} alt="" />
+      <div className="flex flex-col gap-4 md:flex-row max-w-7xl mx-auto items-center md:items-start justify-center">
+        <div className="">
+          <img className='h-96' src={book?.image} alt="" />
         </div>
-        <div className="w-[50%] space-y-3">
+        <div className="space-y-3">
           <h1 className="text-3xl font-semibold">{book?.title}</h1>
-          <p className="text-xl">Author: {book?.author}</p>
+          <p className=""><span className='font-semibold'>Author:</span> {book?.author}</p>
+          <p className="text-sm"><span className='font-semibold'>Genre:</span> {book?.genre}</p>
+        <p className="text-sm"><span className='font-semibold'>Publication Date:</span> {book?.publicationDate}</p>
         </div>
       </div>
         <BookReview reviews={book?.reviews}/>

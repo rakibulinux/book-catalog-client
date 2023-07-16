@@ -14,9 +14,16 @@ const BookCard = ({ book }: IProps) => {
           <img className="w-full h-96" src={book?.image} alt="book" />
           <h1 className="text-xl font-semibold">{book?.title}</h1>
         </Link>
-        <p>Author: {book?.author}</p>
-        <p className="text-sm">Genre: {book?.genre}</p>
-        <p className="text-sm">Publication Date: {book?.publicationDate}</p>
+        <p className="">
+          <span className="font-semibold">Author:</span> {book?.author}
+        </p>
+        <p className="text-sm">
+          <span className="font-semibold">Genre:</span> {book?.genre}
+        </p>
+        <p className="text-sm">
+          <span className="font-semibold">Publication Date:</span>{" "}
+          {book?.publicationDate}
+        </p>
       </div>
     </div>
   );
