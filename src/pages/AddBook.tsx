@@ -34,25 +34,51 @@ const AddBook = () => {
             <div className="w-full space-y-5">
               <div>
                 <Label htmlFor="title">Title</Label>
-                <Input type="text" id="title" className="mt-2" />
+                <Input
+                  {...register("title", { required: "Title is required" })}
+                  type="text"
+                  id="title"
+                  className="mt-2"
+                />
               </div>
               <div>
                 <Label htmlFor="image">Image</Label>
-                <Input type="text" id="image" className="mt-2" />
+                <Input
+                  {...register("image", { required: "Image is required" })}
+                  type="text"
+                  id="image"
+                  className="mt-2"
+                />
               </div>
               <div>
                 <Label htmlFor="publicationDate">Publication Date</Label>
-                <DatePickerWithPreset />
+                <Input
+                  type="date"
+                  id="publicationDate"
+                  {...register("publicationDate", {
+                    required: "PublicationDate is required",
+                  })}
+                />
               </div>
             </div>
             <div className="w-full space-y-5">
               <div>
                 <Label htmlFor="author">Author</Label>
-                <Input type="text" id="author" className="mt-2" />
+                <Input
+                  {...register("author", { required: "Author is required" })}
+                  type="text"
+                  id="author"
+                  className="mt-2"
+                />
               </div>
               <div>
                 <Label htmlFor="genre">Genre</Label>
-                <Input type="text" id="genre" className="mt-2" />
+                <Input
+                  {...register("genre", { required: "Genre is required" })}
+                  type="text"
+                  id="genre"
+                  className="mt-2"
+                />
               </div>
 
               <Button className="w-full">Add Book</Button>
