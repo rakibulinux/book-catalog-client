@@ -19,7 +19,7 @@ const EditBook = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: {},
   } = useForm<IBook>();
   const onSubmit = (data: IBook) => {
     console.log(data);
